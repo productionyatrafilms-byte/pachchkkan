@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-lang-key="title-2"></title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <style>
+      body {
+        background-image: url("./assets/images/background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        overflow: hidden;
+        opacity: 1;
+      }
+      .page-title {
+        position: fixed;
+        top: 5%;
+        left: 50%;
+        width: 22vw;
+        height: 5vw;
+        text-align: center;
+        z-index: 300;
+        border-radius: 0 0 2vw 2vw; /* only bottom rounded */
+        transform: translate(-50%, -50%) scale(1);
+        background-color: #ffd78d;
+        box-shadow: 0 0.5vw 0.2vw rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .page-title span {
+        font-size: 3vw;
+      }
+      .language-container {
+        position: fixed;
+        top: 2.5vw;
+        right: 5%;
+        display: flex;
+        width: 9vw;
+        padding: 0.2vw 0.3vw;
+        height: auto;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "BalooRegular";
+        border: 0.3vw solid white;
+        background-color: transparent;
+        border-radius: 50vw;
+        z-index: 900;
+        transform: translateX(0vw);
+        opacity: 1;
+        pointer-events: none;
+        transition: transform 0.8s ease;
+      }
+
+      .language-container div {
+        width: 2.5vw;
+        height: 2.5vw;
+        font-size: 1.6vw;
+        text-align: center;
+        border: 0.3vw solid white;
+        background: transparent !important;
+        color: white;
+        pointer-events: auto;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-family: "BalooRegular", sans-serif;
+      }
+
+      .language-container div:hover {
+        background-color: white !important;
+        color: #6168ea;
+      }
+
+      .language-container div.active {
+        background-color: white !important;
+        color: #6168ea;
+      }
+
+      .home-btn {
+        transform: translateX(0vw);
+        opacity: 1;
+        pointer-events: auto;
+        transition: transform 0.8s ease;
+        cursor: pointer;
+      }
+
+      .swiper-section {
+        position: relative;
+        width: 100%;
+        padding: 2vw 0;
+        overflow: hidden;
+        margin-top: 8vw;
+
+        display: flex;
+        justify-content: center;
+      }
+
+      .mySwiper {
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+        direction: rtl; /* makes remaining slides stay on the left */
+      }
+
+      .mySwiper .swiper-wrapper {
+        align-items: center;
+      }
+
+      .mySwiper .swiper-slide {
+        width: 40vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition:
+          transform 0.4s ease,
+          filter 0.4s ease;
+      }
+
+      .mySwiper .swiper-slide-active {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+      }
+
+      .mySwiper .swiper-slide-prev,
+      .mySwiper .swiper-slide-next {
+        transform: scale(0.85);
+        filter: blur(0.2vw);
+      }
+
+      .custom-card {
+        position: relative;
+        width: 100%;
+        height: 25vw;
+        background: white;
+        border: 0.5vw solid #f2c76f;
+        border-radius: 1.5vw;
+        box-shadow: 0 0.8vw 1.6vw rgba(0, 0, 0, 0.18);
+        padding: 1vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+      }
+
+      .custom-card div {
+        font-family: "BalooRegular", sans-serif;
+        font-size: 4vw;
+        color: #5e2bb0;
+        line-height: 1.1;
+      }
+
+      .custom-card p {
+        position: absolute;
+        width: 80%;
+        font-family: "BalooRegular", sans-serif;
+        font-size: 2vw;
+        line-height: 1.5;
+        color: #5e2bb0;
+        left: 50%;
+        top: 50%;
+        margin-top: 1vw;
+        transform: translate(-50%, -50%);
+      }
+
+      .swiper-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4.5vw;
+        height: 4.5vw;
+        z-index: 20;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-nav img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .prev-btn {
+        left: 20%;
+        display: none;
+      }
+
+      .next-btn {
+        right: 20%;
+      }
+
+            .topic-container {
+        position: absolute;
+        bottom: 19%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 45%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .topic-container .topic {
+        text-decoration: none;
+        padding: 0.5vw 0vw;
+        z-index: 900;
+        background-color: transparent;
+        border: 0.3vw solid #ffd78d;
+        border-radius: 20vw;
+        text-align: center;
+        color: white;
+        font-family: "BalooRegular";
+        font-size: 1.5vw;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .topic-1 {
+      }
+
+      .topic-2 {
+        background-color: #ffd78d !important;
+        color: #5e29a5!important;
+      }
+
+      .topic:hover {
+        background-color: #ffd78d;
+        color: #5e29a5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-title">
+      <span data-lang-key="title"></span>
+    </div>
+    <div class="language-container">
+      <div class="english active">E</div>
+      <div class="hindi">H</div>
+      <div class="gujrati">G</div>
+    </div>
+    <a class="home-button home-btn" href="index.html">
+      <img src="./assets/images/home.png" alt="" />
+    </a>
+
+    <div class="swiper-section">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="ekasna"></div>
+              <p data-lang-key="slide-1.1"></p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="biyasna"></div>
+              <p data-lang-key="slide-1.2"></p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="ayambil"></div>
+              <p data-lang-key="slide-1.3"></p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="upvas"></div>
+              <p data-lang-key="slide-1.4"></p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="chouvihar"></div>
+              <p data-lang-key="slide-1.5"></p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="tivihar"></div>
+              <p data-lang-key="slide-1.6"></p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="chhatth"></div>
+              <p data-lang-key="slide-1.7"></p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="attham"></div>
+              <p data-lang-key="slide-1.8"></p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="atthai"></div>
+              <p data-lang-key="slide-1.9"></p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="custom-card">
+              <div data-lang-key="masakshaman"></div>
+              <p data-lang-key="slide-1.10"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-nav prev-btn">
+        <img src="./assets/images/prev-btn.png" alt="Previous" />
+      </div>
+
+      <div class="swiper-nav next-btn">
+        <img src="./assets/images/next-btn.png" alt="Next" />
+      </div>
+    </div>
+    <div class="topic-container">
+      <a href="instruction.html" class="topic topic-1" data-lang-key="title-1">
+      </a>
+      <a href="types-of-fast5.html" class="topic topic-2" data-lang-key="title-2"></a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script>
+      const prevBtn = document.querySelector(".prev-btn");
+      const nextBtn = document.querySelector(".next-btn");
+
+      const swiper = new Swiper(".mySwiper", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: window.innerWidth * 0.15, // ~8vw gap
+        speed: 700,
+        loop: false,
+        initialSlide: 0,
+        navigation: {
+          nextEl: ".next-btn",
+          prevEl: ".prev-btn",
+        },
+        on: {
+          init: function () {
+            prevBtn.style.display = "none";
+            nextBtn.style.display = this.isEnd ? "none" : "flex";
+          },
+          slideChange: function () {
+            prevBtn.style.display = this.isBeginning ? "none" : "flex";
+            nextBtn.style.display = this.isEnd ? "none" : "flex";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

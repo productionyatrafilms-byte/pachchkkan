@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-lang-key="title"></title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="bottom-img">
+      <img src="./assets/images/fg.png" alt="" />
+    </div>
+
+    <div class="bg-img"></div>
+
+    <a class="home-button home-btn" href="index.html">
+      <img src="./assets/images/home.png" alt="" />
+    </a>
+
+    <div class="page-title">
+      <span data-lang-key="title"></span>
+    </div>
+
+    <button class="click" data-lang-key="click">click</button>
+
+    <div class="language-container">
+      <div class="english active">E</div>
+      <div class="hindi">H</div>
+      <div class="gujrati">G</div>
+    </div>
+    <div class="sun-light">
+      <img src="./assets/images/ark.png" alt="arc" />
+      <div class="sun">
+        <img src="./assets/images/sun.png" alt="Sun" />
+      </div>
+    </div>
+    <main>
+      <div class="custom-swiper-section">
+        <div class="custom-swiper-nav custom-prev">
+          <img src="./assets/images/prev-btn.png" alt="Previous" />
+        </div>
+
+        <div class="custom-swiper-nav custom-next">
+          <img src="./assets/images/next-btn.png" alt="Next" />
+        </div>
+
+        <div class="swiper custom-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="slide-circle">
+                <div class="main-slide-content">
+                  <div data-lang-key="sun-1"></div>
+                  <p data-lang-key="sun-sub-1"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-circle">
+                <div class="main-slide-content">
+                  <div data-lang-key="sun-2"></div>
+                  <p data-lang-key="sun-sub-2"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-circle">
+                <div class="main-slide-content">
+                  <div data-lang-key="sun-3"></div>
+                  <p data-lang-key="sun-sub-3"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-circle">
+                <div class="main-slide-content">
+                  <div data-lang-key="sun-4"></div>
+                  <p data-lang-key="sun-sub-4"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-circle">
+                <div class="main-slide-content">
+                  <div data-lang-key="sun-5"></div>
+                  <p data-lang-key="sun-sub-5"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-circle slide-six">
+                <button
+                  class="slide6-nav slide6-prev"
+                  type="button"
+                  aria-label="Previous inner content"
+                >
+                  <i class="fa-solid fa-angle-up"></i>
+                </button>
+
+                <div class="slide6-content-wrap">
+                  <div class="slide6-content active">
+                    <div data-lang-key="sun-6"></div>
+                    <p data-lang-key="sun-sub-6"></p>
+                  </div>
+
+                  <div class="slide6-content">
+                    <div data-lang-key="sun-7"></div>
+                    <p data-lang-key="sun-sub-7"></p>
+                  </div>
+
+                  <div class="slide6-content">
+                    <div data-lang-key="sun-8"></div>
+                    <p data-lang-key="sun-sub-8"></p>
+                  </div>
+                </div>
+
+                <button
+                  class="slide6-nav slide6-next"
+                  type="button"
+                  aria-label="Next inner content"
+                >
+                  <i class="fa-solid fa-angle-down"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="instruction.html" class="topic topic-1" data-lang-key="title-1">
+      </a>
+      <a href="types-of-fast.html" class="topic topic-2" data-lang-key="title-2"></a>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const bgImg = document.querySelector(".bg-img");
+        const bottomImgTag = document.querySelector(".bottom-img img");
+        const sun = document.querySelector(".sun");
+        const sunLight = document.querySelector(".sun-light");
+        const outerPrev = document.querySelector(".custom-prev");
+        const outerNext = document.querySelector(".custom-next");
+        const clickBtn = document.querySelector(".click");
+        const pageTitle = document.querySelector(".page-title");
+
+        let isDraggingSun = false;
+        let isSunControlledByDrag = false;
+        let activePointerId = null;
+
+        if (pageTitle) {
+          pageTitle.style.display = "flex";
+        }
+
+        if (clickBtn) {
+          clickBtn.style.display = "block";
+          clickBtn.addEventListener("click", () => {
+            document.body.classList.add("intro-started");
+          });
+        }
+
+        const bgImages = [
+          "./assets/images/5.png",
+          "./assets/images/1.png",
+          "./assets/images/2.png",
+          "./assets/images/3.png",
+          "./assets/images/4.png",
+          "./assets/images/5.png",
+        ];
+
+        const bottomImages = [
+          "./assets/images/fg.png",
+          "./assets/images/fg-1.png",
+          "./assets/images/fg-2.png",
+          "./assets/images/fg-3.png",
+          "./assets/images/fg-4.png",
+          "./assets/images/fg-5.png",
+        ];
+
+        const sunPositions = [
+          { top: "70%", left: "5%" },
+          { top: "33%", left: "15%" },
+          { top: "8%", left: "35%" },
+          { top: "8%", left: "65%" },
+          { top: "33%", left: "85%" },
+          { top: "70%", left: "95%" },
+        ];
+
+        function updateScene(index) {
+          if (bgImg && bgImages[index]) {
+            bgImg.style.backgroundImage = `url("${bgImages[index]}")`;
+          }
+
+          if (bottomImgTag && bottomImages[index]) {
+            bottomImgTag.src = bottomImages[index];
+          }
+
+          if (!isSunControlledByDrag && sun && sunPositions[index]) {
+            sun.style.transition =
+              "top 0.8s ease, left 0.8s ease, transform 0.8s ease";
+            sun.style.top = sunPositions[index].top;
+            sun.style.left = sunPositions[index].left;
+            sun.style.transform = "translate(-50%, -50%)";
+          }
+        }
+
+        function updateOuterNav(swiper) {
+          if (outerPrev) {
+            outerPrev.style.display = swiper.isBeginning ? "none" : "";
+          }
+          if (outerNext) {
+            outerNext.style.display = swiper.isEnd ? "none" : "";
+          }
+        }
+
+        function animateMainSlideContent(swiper) {
+          const slides = document.querySelectorAll(
+            ".custom-swiper .swiper-slide",
+          );
+
+          slides.forEach((slide, index) => {
+            const content = slide.querySelector(".main-slide-content");
+            if (!content) return;
+
+            content.style.transition =
+              "opacity 0.45s ease, transform 0.45s ease";
+
+            if (index === swiper.activeIndex) {
+              content.style.opacity = "1";
+              content.style.transform = "translateX(0)";
+            } else if (index < swiper.activeIndex) {
+              content.style.opacity = "0";
+              content.style.transform = "translateX(-3vw)";
+            } else {
+              content.style.opacity = "0";
+              content.style.transform = "translateX(3vw)";
+            }
+          });
+        }
+
+        function initSlide6InnerNav() {
+          const slideSix = document.querySelector(".slide-six");
+          if (!slideSix) return;
+
+          const innerSlides = slideSix.querySelectorAll(".slide6-content");
+          const innerPrev = slideSix.querySelector(".slide6-prev");
+          const innerNext = slideSix.querySelector(".slide6-next");
+          const prevIcon = innerPrev ? innerPrev.querySelector("i") : null;
+          const nextIcon = innerNext ? innerNext.querySelector("i") : null;
+
+          let currentInnerIndex = 0;
+          let isAnimating = false;
+
+          function updateInnerNav() {
+            if (innerPrev) {
+              innerPrev.style.display =
+                currentInnerIndex === 0 ? "none" : "flex";
+            }
+            if (innerNext) {
+              innerNext.style.display =
+                currentInnerIndex === innerSlides.length - 1 ? "none" : "flex";
+            }
+          }
+
+          function setupInitialInnerSlides() {
+            innerSlides.forEach((slide, index) => {
+              slide.style.position = "absolute";
+              slide.style.inset = "0";
+              slide.style.display = "flex";
+              slide.style.flexDirection = "column";
+              slide.style.justifyContent = "center";
+              slide.style.alignItems = "center";
+              slide.style.textAlign = "center";
+              slide.style.padding = "4vw 3vw";
+              slide.style.transition =
+                "transform 0.45s ease, opacity 0.45s ease";
+
+              if (index === 0) {
+                slide.classList.add("active");
+                slide.style.opacity = "1";
+                slide.style.transform = "translateY(0)";
+              } else {
+                slide.classList.remove("active");
+                slide.style.opacity = "0";
+                slide.style.transform = "translateY(100%)";
+              }
+            });
+
+            updateInnerNav();
+          }
+
+          function showInnerSlide(nextIndex, direction) {
+            if (
+              nextIndex < 0 ||
+              nextIndex >= innerSlides.length ||
+              nextIndex === currentInnerIndex ||
+              isAnimating
+            ) {
+              return;
+            }
+
+            isAnimating = true;
+
+            const currentSlide = innerSlides[currentInnerIndex];
+            const nextSlide = innerSlides[nextIndex];
+
+            nextSlide.classList.add("active");
+            nextSlide.style.opacity = "0";
+            nextSlide.style.transform =
+              direction === "next" ? "translateY(100%)" : "translateY(-100%)";
+
+            requestAnimationFrame(() => {
+              currentSlide.style.opacity = "0";
+              currentSlide.style.transform =
+                direction === "next" ? "translateY(-100%)" : "translateY(100%)";
+
+              nextSlide.style.opacity = "1";
+              nextSlide.style.transform = "translateY(0)";
+            });
+
+            setTimeout(() => {
+              currentSlide.classList.remove("active");
+              currentSlide.style.opacity = "0";
+              currentSlide.style.transform = "translateY(0)";
+
+              nextSlide.style.opacity = "1";
+              nextSlide.style.transform = "translateY(0)";
+
+              currentInnerIndex = nextIndex;
+              isAnimating = false;
+              updateInnerNav();
+            }, 450);
+          }
+
+          if (innerPrev) {
+            innerPrev.addEventListener("click", (e) => {
+              e.stopPropagation();
+              showInnerSlide(currentInnerIndex - 1, "prev");
+            });
+
+            innerPrev.addEventListener("mouseenter", () => {
+              if (prevIcon) {
+                prevIcon.classList.remove("fa-angle-up");
+                prevIcon.classList.add("fa-angles-up");
+              }
+            });
+
+            innerPrev.addEventListener("mouseleave", () => {
+              if (prevIcon) {
+                prevIcon.classList.remove("fa-angles-up");
+                prevIcon.classList.add("fa-angle-up");
+              }
+            });
+          }
+
+          if (innerNext) {
+            innerNext.addEventListener("click", (e) => {
+              e.stopPropagation();
+              showInnerSlide(currentInnerIndex + 1, "next");
+            });
+
+            innerNext.addEventListener("mouseenter", () => {
+              if (nextIcon) {
+                nextIcon.classList.remove("fa-angle-down");
+                nextIcon.classList.add("fa-angles-down");
+              }
+            });
+
+            innerNext.addEventListener("mouseleave", () => {
+              if (nextIcon) {
+                nextIcon.classList.remove("fa-angles-down");
+                nextIcon.classList.add("fa-angle-down");
+              }
+            });
+          }
+
+          setupInitialInnerSlides();
+        }
+
+        const customSwiper = new Swiper(".custom-swiper", {
+          slidesPerView: 1,
+          effect: "fade",
+          fadeEffect: {
+            crossFade: true,
+          },
+          speed: 500,
+          allowTouchMove: true,
+          navigation: {
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
+          },
+          on: {
+            init: function () {
+              updateScene(this.activeIndex);
+              updateOuterNav(this);
+              animateMainSlideContent(this);
+              initSlide6InnerNav();
+            },
+            slideChangeTransitionStart: function () {
+              animateMainSlideContent(this);
+            },
+            slideChange: function () {
+              updateScene(this.activeIndex);
+              updateOuterNav(this);
+            },
+          },
+        });
+
+        function handleSunDragMove(clientX, clientY) {
+          if (!sun || !customSwiper) return;
+
+          const vw = window.innerWidth;
+          const vh = window.innerHeight;
+
+          let leftPercent = (clientX / vw) * 100;
+          let topPercent = (clientY / vh) * 100;
+
+          leftPercent = Math.max(5, Math.min(95, leftPercent));
+          topPercent = Math.max(8, Math.min(70, topPercent));
+
+          sun.style.left = leftPercent + "%";
+          sun.style.top = topPercent + "%";
+          sun.style.transform = "translate(-50%, -50%)";
+
+          const totalSlides = customSwiper.slides.length;
+          const normalizedX = (leftPercent - 5) / 90;
+          const nextIndex = Math.max(
+            0,
+            Math.min(totalSlides - 1, Math.floor(normalizedX * totalSlides)),
+          );
+
+          if (customSwiper.activeIndex !== nextIndex) {
+            customSwiper.slideTo(nextIndex);
+          }
+        }
+
+        if (sun) {
+          sun.style.cursor = "grab";
+          sun.style.touchAction = "none";
+
+          sun.addEventListener("pointerdown", (e) => {
+            if (!document.body.classList.contains("intro-started")) return;
+
+            e.preventDefault();
+            isDraggingSun = true;
+            isSunControlledByDrag = true;
+            activePointerId = e.pointerId;
+
+            sun.style.cursor = "grabbing";
+            sun.style.transition = "none";
+
+            try {
+              sun.setPointerCapture(e.pointerId);
+            } catch (err) {}
+
+            handleSunDragMove(e.clientX, e.clientY);
+          });
+
+          sun.addEventListener("pointermove", (e) => {
+            if (!isDraggingSun || e.pointerId !== activePointerId) return;
+            handleSunDragMove(e.clientX, e.clientY);
+          });
+
+          const stopSunDrag = (e) => {
+            if (activePointerId !== null && e.pointerId !== activePointerId)
+              return;
+
+            isDraggingSun = false;
+            activePointerId = null;
+            sun.style.cursor = "grab";
+          };
+
+          sun.addEventListener("pointerup", stopSunDrag);
+          sun.addEventListener("pointercancel", stopSunDrag);
+          sun.addEventListener("lostpointercapture", () => {
+            isDraggingSun = false;
+            activePointerId = null;
+            sun.style.cursor = "grab";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
