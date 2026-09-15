@@ -5,14 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-lang-key="title"></title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./fontawesome/css/all.min.css" />
   </head>
   <body>
     <div class="bottom-img">
@@ -144,7 +138,8 @@
       <a href="types-of-fast.html" class="topic topic-2" data-lang-key="title-2"></a>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./assets/js/swiper-bundle.min.js"></script>
+    <script src="./assets/js/data.js"></script>
     <script src="./assets/js/app.js"></script>
 
     <script>
@@ -168,7 +163,10 @@
 
         if (clickBtn) {
           clickBtn.style.display = "block";
+          const enterAudio = new Audio("./assets/audio/transition/5.mp3");
           clickBtn.addEventListener("click", () => {
+            enterAudio.currentTime = 0;
+            enterAudio.play().catch(() => {});
             document.body.classList.add("intro-started");
           });
         }
